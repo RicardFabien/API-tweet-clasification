@@ -8,13 +8,14 @@ from sklearn.pipeline import make_pipeline
 from sklearn.svm import SVC
 
 comments = pa.read_csv("labels.csv")
+comments = comments.sample(1000)
 
 tweets = comments["tweet"].transform(lambda line: html.unescape(line))
 
 comments.drop('tweet', axis=1, inplace=True)
 
 X = tweets
-y = comments[ "offensive_language"]
+y = comments[ ["offensive_language","hate_speech"]]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.80, random_state=413)
 
@@ -23,4 +24,4 @@ clf = make_pipeline(
     OneVsRestClassifier(SVC(kernel='linear', probability=True))
 )
 
-clf.fit(X_train,y_train)
+clf.fit_transform(X_train,y_train)
