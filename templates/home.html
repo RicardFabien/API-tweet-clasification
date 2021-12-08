@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ce contenu est-il mauvais ?</title>
+</head>
+<body>
+
+    <p>Entrez une phrase et vous saurez si celle ci est considéré comme :
+        <ul>
+            <li>du contenu haineux</li>
+            <li>du contenu potentiellement offensant</li>
+            <li>du contenu benin</li>
+        </ul>
+    </p>
+
+    <form action="/" method="POST">
+        <input type="text" name="txt" value={{txt}}>
+        <input type="submit" value="Tester">
+    </form> <br>
+    {% if type != -1 : %}
+        <p>Ce contenu est considéré : {{type}}</p>
+    {% endif %}
+</body>
+</html>
