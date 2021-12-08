@@ -22,7 +22,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.80, rando
 
 clf = make_pipeline(
     TfidfVectorizer(stop_words='english'),
-    OneVsRestClassifier(SVC(kernel='linear', probability=True))
+    OneVsRestClassifier(SVC(kernel='linear', probability=True)),
+    verbose = True
 )
 
 clf.fit(X_train,y_train)
