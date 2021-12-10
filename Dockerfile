@@ -1,5 +1,5 @@
-FROM python
+FROM python:3.8
 EXPOSE 5000
 COPY . .
 RUN pip install -r requirements.txt
-CMD python main.py
+CMD gunicorn main:app
